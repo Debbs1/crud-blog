@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>NODE CRUD BLOG</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mb-4">The Somtea Blog</h1>
+        <div class="row mb-3">
+            <a href="/blogs/new" class="btn btn-success d-flex align-items-center"><i
+                    class="material-icons mr-2">add_circle</i> New Blog</a>
+        </div>
+
+        <div class="row">
+
+            <% if(blogs.length<1){%>
+            <p>No Blogs yet, create a new one</p>
+
+            <% }else{%>
+
+            <% blogs.forEach(blog=>{ %>
+            <!-- blog card -->
+            <div class="col-lg-6 card">
+                <div class="row p-2">
+
+                    <div class="col-5 card-img">
+                        <!-- <img src="/images/mosque.jpg" class="card-img" alt="..."> -->
+
+                    </div>
+                    <%  %>
+                    <div class="col-7 p-3">
+                        <div class="top d-flex align-items-start">
+                            <h5 class="card-title text-bold w-100"><%= blog.title %></h5>
+                            <div class="more position-relative" style="cursor: pointer;">
+                                <i class="material-icons p-2">more_vert</i>
+                                <div class="d-none options card rounded-pill shadow-sm p-1 position-absolute">
+                                    <a href="/blogs/edit/<%= blog.id %> " class="rounded-circle p-2 mb-2"
+                                        style="background:blue;">
+                                        <i class="material-icons" style="color:white">create</i>
+                                    </a>
+                                    <form action="/blogs/<%= blog.id%>?_method=DELETE" method="POST">
+                                        <button class="rounded-circle p-2 bg-danger">
+                                            <i class="material-icons" style="color:white">delete
+                                            </i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="card-text"><%= blog.description.substring(0, 200) %>
+                        </p>
+                        <div class="d-flex justify-content">
+                            <div class="mr-2 mt-2">
+                                <img src="img.jpg" class="rounded-circle bg-primary no-gutters" style="width: 60px">
+                            </div>
+                            <div class="mt-2 ml-1 mr-4">
+                                <h5 class="no-gutters ml-0 pl-0"><span><%= blog.author %></span></h5>
+                                <p style="font-size: 12px !important;"><%= blog.createdAt.toLocaleDateString() %></p>
+                            </div>
+                            <a href="/blogs/<%= blog.id %> ">
+                                <i class='material-icons mt-3 ml-3 text-black'>send</i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <% }) %>
+            <%  } %>
+
+
+        </div>
+        <script src="/js/index.js"></script>
+</body>
+
+</html>
