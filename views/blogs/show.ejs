@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title><%= blog.title %> </title>
+</head>
+
+<body>
+    <div class="container p-5">
+        <div class="card shadow-lg rounded p-3">
+            <div class="row">
+                <div class="col-2">
+
+                    <a href="/" class="rounded-pill shadow-lg p-2 d-flex align-items-center">
+                        <i class="material-icons" style="color:white">delete
+                        </i> <span class="" style="color:black">Back</span>
+                    </a>
+                </div>
+                <div class="col-8">
+                    <h1><%= blog.title %></h1>
+                </div>
+                <div class="col-2">
+                    <div class="more position-relative" style="cursor: pointer;">
+                        <i class="material-icons p-2">more_vert</i>
+                        <div class="card rounded-lg shadow-sm p-1 position-absolute" style="z-index: 9000;">
+                            <a href="/blogs/edit/<%= blog.id %>" class="rounded-pill p-2 mb-2 d-flex align-items-center"
+                                style="background:blue;">
+                                <i class="material-icons" style="color:white">create</i>
+                                <span class="" style="color:white">Edit</span>
+                            </a>
+                            <form action="/blogs/<%= blog.id%>?_method=DELETE" method="POST">
+                                <button class="rounded-pill p-2 bg-danger d-flex align-items-center">
+                                    <i class="material-icons" style="color:white">delete
+                                    </i> <span class="" style="color:white">Delete</span>
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 card-img">
+                    <img src="/images/mosque.jpg" class="card-img" alt="...">
+
+                </div>
+            </div>
+            <div class="d-flex justify-content">
+                <div class="mr-2 mt-2">
+                    <img src="/images/mosque.jpg" class="rounded-circle bg-primary no-gutters"
+                        style="width: 60px; height: 60px;">
+                </div>
+                <div class="mt-2 ml-1 mr-4">
+                    <h5 class="no-gutters ml-0 pl-0"><span><%= blog.author %></span></h5>
+                    <p style="font-size: 12px !important;"><%= blog.createdAt.toLocaleDateString() %></p>
+                </div>
+                <i class='material-icons mt-3 ml-3 text-black'>send</i>
+            </div>
+            <p class="card-text"> <%= blog.description %>
+        </div>
+
+
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
