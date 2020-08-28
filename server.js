@@ -6,11 +6,7 @@ const methodOverride = require('method-override')
 const app = express();
 
 
-//connect to db
-mongoose.connect('mongodb://localhost/blog', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/debbs-blog');
 //set view engine
 app.set('view engine', 'ejs')
 
@@ -27,4 +23,6 @@ app.get('/', async (request, response) => {
 })
 //use blog router
 app.use('/blogs', blogRouter);
-app.listen(5000) 
+// start the server listening for requests
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running..."));
